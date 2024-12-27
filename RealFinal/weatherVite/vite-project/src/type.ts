@@ -32,6 +32,7 @@ export type Clouds = {
 export type SystemInfo = {
   type: number;
   id: number;
+  message: string;
   country: string;
   sunrise: number;
   sunset: number;
@@ -44,10 +45,12 @@ export type WeatherData = {
   visibility: number;
   wind: Wind;
   clouds: Clouds;
+  rain: { '1h': number };
+  snow: { '1h': number };
   dt: number;
   sys: SystemInfo;
   timezone: number;
   id: number;
-  name: string;
+  name?: string;
   cod: number;
 };

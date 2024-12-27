@@ -10,11 +10,11 @@ const LON = 126.7770556; // 지역의 경도를 넣어주세요!
 // });
 
 export const weatherApi = {
-  getWeatherByCity: async (): Promise<WeatherData> => {
+  getWeather: async (): Promise<WeatherData> => {
     try {
       //const response = await client.get<WeatherData>(
       const response = await axios.get<WeatherData>(
-        `${BASE_URL}/weather?lat=${LAT}&lon=${LON}&appid=${
+        `${BASE_URL}/weather?lat=${LAT}&lon=${LON}&units=metric&appid=${
           import.meta.env.VITE_API_KEY
         }`
       );

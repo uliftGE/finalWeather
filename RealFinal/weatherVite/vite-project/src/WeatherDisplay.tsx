@@ -9,12 +9,8 @@ const WeatherDisplay = () => {
     error,
   } = useQuery<WeatherData>({
     queryKey: ['weather', 'Goyang-si'],
-    queryFn: () => weatherApi.getWeatherByCity(),
+    queryFn: () => weatherApi.getWeather(),
   });
-
-  const convertKelvinToCelsius = (kelvin: number): number => {
-    return Math.round((kelvin - 273.15) * 10) / 10;
-  };
 
   if (isLoading) return <div>날씨 정보를 불러오는 중...</div>;
   if (error) return <div>오류가 발생했습니다.</div>;
@@ -36,7 +32,7 @@ const WeatherDisplay = () => {
             />
             <div className='ml-6'>
               <p className='text-2xl font-semibold text-gray-700'>
-                {convertKelvinToCelsius(weatherData.main.temp)}°C
+                {weatherData.main.temp}°C
               </p>
               <p className='text-gray-600 capitalize'>
                 {weatherData.weather[0].description}
@@ -48,7 +44,7 @@ const WeatherDisplay = () => {
             <div className='bg-blue-50 rounded-xl p-4 shadow-md'>
               <p className='text-sm text-gray-600'>체감 온도</p>
               <p className='text-lg font-bold text-gray-800'>
-                {convertKelvinToCelsius(weatherData.main.feels_like)}°C
+                {weatherData.main.feels_like}°C
               </p>
             </div>
             <div className='bg-blue-50 rounded-xl p-4 shadow-md'>
